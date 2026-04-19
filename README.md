@@ -71,12 +71,12 @@ This demo proves the grounding loop: **raw source → structured data + wiki →
 
 ## Verification
 
-`scripts/verify.py` runs four determinism checks and is wired into CI (see badge above):
+`scripts/verify.py` runs four determinism checks and is wired into CI (see badge above). Checks are **manifest-driven** — each dataset declares its own expected values and reproducibility target in `data/manifests/*.yaml`, so adding a new jurisdiction or treaty automatically adds coverage.
 
-1. Every file referenced by `index.html` exists on disk.
+1. `index.html`'s FILES manifest is in sync with the filesystem (every registered file exists + every on-disk file is registered).
 2. Every `[[wiki-link]]` and `raw/|wiki/|data/|outputs/` path reference resolves.
-3. The demo tax calculation reproduces from CSV data (prevents prose/data drift).
-4. Every numeric value in `data/us-fed-2025-*.csv` appears literally in the raw IRS source.
+3. Each manifest's `demo_outputs` reproduces from its CSV data (prevents prose/data drift).
+4. Each manifest's CSV amounts appear literally in its declared raw source (catches transcription errors).
 
 Run locally:
 
@@ -85,6 +85,8 @@ python3 scripts/verify.py
 ```
 
 Exit 0 = KB is internally consistent. CI blocks any PR that fails.
+
+To add a new dataset: create `data/manifests/<id>.yaml` pointing to your CSVs + raw source (see `data/manifests/us-fed-2025.yaml` as a template).
 
 ## Workflow
 

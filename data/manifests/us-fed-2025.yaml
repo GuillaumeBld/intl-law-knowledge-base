@@ -1,0 +1,79 @@
+# Dataset manifest — US Federal tax year 2025
+#
+# Used by scripts/verify.py to run generic checks:
+#   - Every expected numeric value appears literally in the raw source
+#     (catches transcription errors).
+#   - If a demo_output is listed, its headline claim must reproduce from
+#     the CSV data (catches prose/data drift).
+
+id: us-fed-2025
+jurisdiction: US-FED
+tax_year: 2025
+authority: Internal Revenue Service (IRS)
+
+raw_source: raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+
+# CSV datasets produced from this raw source.
+# For each file, declare which column holds the numeric amount and a list
+# of expected values (keyed by row selector) that must match exactly AND
+# appear literally in the raw source (formatted as "$12,345").
+csv_datasets:
+  - file: data/us-fed-2025-brackets.csv
+    amount_column: bracket_floor
+    # Every row whose bracket_floor > 0 must appear literally in the raw
+    # text. The zero-floor rows (10% rate starting at $0) are implicit and
+    # skipped by the verifier.
+    all_amounts_must_appear_in_raw: true
+
+  - file: data/us-fed-2025-key-amounts.csv
+    amount_column: amount
+    # Spot-check a subset of known-good values. Catches typos without
+    # requiring every amount (some items like llc_phaseout overlap with
+    # other amounts and aren't uniquely searchable).
+    expected_values:
+      - row_selector: {item: standard_deduction, filing_status: single}
+        value: 15000
+      - row_selector: {item: standard_deduction, filing_status: mfj}
+        value: 30000
+      - row_selector: {item: standard_deduction, filing_status: hoh}
+        value: 22500
+      - row_selector: {item: amt_exemption, filing_status: single}
+        value: 88100
+      - row_selector: {item: amt_exemption, filing_status: mfj}
+        value: 137000
+      - row_selector: {item: eitc_max_3plus_children, filing_status: any}
+        value: 8046
+      - row_selector: {item: estate_basic_exclusion, filing_status: any}
+        value: 13990000
+      - row_selector: {item: annual_gift_exclusion, filing_status: any}
+        value: 19000
+      - row_selector: {item: foreign_earned_income_exclusion, filing_status: any}
+        value: 130000
+      - row_selector: {item: transportation_fringe_monthly, filing_status: any}
+        value: 325
+      - row_selector: {item: health_fsa_salary_reduction, filing_status: any}
+        value: 3300
+      - row_selector: {item: adoption_credit_special_needs_max, filing_status: any}
+        value: 17280
+
+# Optional reproducibility check: a previously generated output whose
+# headline numeric claim must be reproducible from the csv_datasets
+# above. Runs a declarative progressive-bracket tax computation.
+demo_outputs:
+  - file: outputs/demo-single-filer-75k-2025.md
+    claim_must_appear: "$8,114"
+    computation:
+      type: progressive_tax
+      wages: 75000
+      standard_deduction_from:
+        csv: data/us-fed-2025-key-amounts.csv
+        row_selector: {item: standard_deduction, filing_status: single}
+        column: amount
+      brackets_from:
+        csv: data/us-fed-2025-brackets.csv
+        row_filter: {filing_status: single}
+        rate_column: rate
+        floor_column: bracket_floor
+        ceiling_column: bracket_ceiling
+      expected: 8114.00
+      tolerance: 0.01
