@@ -4,6 +4,8 @@ A grounded, source-traceable knowledge base for **international law** — design
 
 > **Determinism principle:** the same legal question + same facts + same grounded KB must produce the same answer every time. Every claim traces to a primary source in `raw/`.
 
+[![verify](https://github.com/GuillaumeBld/intl-law-knowledge-base/actions/workflows/verify.yml/badge.svg)](https://github.com/GuillaumeBld/intl-law-knowledge-base/actions/workflows/verify.yml)
+
 ## Browse the KB
 
 **→ [guillaumebld.github.io/intl-law-knowledge-base](https://guillaumebld.github.io/intl-law-knowledge-base/)** — live viewer on GitHub Pages.
@@ -64,6 +66,25 @@ This demo proves the grounding loop: **raw source → structured data + wiki →
 - Flag jurisdiction + instrument + effective date on every rule.
 - Uncertain/outdated content carries `> STATUS: needs-verification`.
 - Prefer primary sources (treaty texts, judgments, official publications) over secondary commentary.
+
+**Using this KB with an LLM:** paste [`GROUNDING_PROMPT.md`](./GROUNDING_PROMPT.md) as the system prompt. It encodes the citation contract so the model refuses out-of-coverage questions instead of hallucinating.
+
+## Verification
+
+`scripts/verify.py` runs four determinism checks and is wired into CI (see badge above):
+
+1. Every file referenced by `index.html` exists on disk.
+2. Every `[[wiki-link]]` and `raw/|wiki/|data/|outputs/` path reference resolves.
+3. The demo tax calculation reproduces from CSV data (prevents prose/data drift).
+4. Every numeric value in `data/us-fed-2025-*.csv` appears literally in the raw IRS source.
+
+Run locally:
+
+```bash
+python3 scripts/verify.py
+```
+
+Exit 0 = KB is internally consistent. CI blocks any PR that fails.
 
 ## Workflow
 
