@@ -4,18 +4,21 @@ A grounded, source-traceable knowledge base for **international law** — design
 
 > **Determinism principle:** the same legal question + same facts + same grounded KB must produce the same answer every time. Every claim traces to a primary source in `raw/`.
 
-## 🧠 Browse the KB
+## Browse the KB
 
-**→ Open [`index.html`](./index.html) to navigate in the browser.**
+**→ [guillaumebld.github.io/intl-law-knowledge-base](https://guillaumebld.github.io/intl-law-knowledge-base/)** — live viewer on GitHub Pages.
 
-Locally:
+Sidebar groups articles by Wiki / Outputs / Data / Raw. Every `.md` renders with wiki links clickable; every `.csv` renders as a table.
+
+<details>
+<summary>Run locally (optional)</summary>
 
 ```bash
 python3 -m http.server 8080
 # open http://localhost:8080/
 ```
 
-On GitHub Pages (Settings → Pages → Deploy from branch → `main` → `/`), the site serves at `https://guillaumebld.github.io/intl-law-knowledge-base/`.
+</details>
 
 ## Structure
 
