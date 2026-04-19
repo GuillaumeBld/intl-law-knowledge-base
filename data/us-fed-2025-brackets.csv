@@ -1,0 +1,15 @@
+jurisdiction,tax_year,filing_status,rate,bracket_floor,bracket_ceiling,source
+US-FED,2025,single,0.10,0,11925,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.12,11925,48475,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.22,48475,103350,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.24,103350,197300,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.32,197300,250525,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.35,250525,626350,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,single,0.37,626350,,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.10,0,23850,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.12,23850,96950,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.22,96950,206700,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.24,206700,394600,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.32,394600,501050,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.35,501050,751600,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+US-FED,2025,mfj,0.37,751600,,raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md

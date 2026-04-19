@@ -1,0 +1,9 @@
+# Jurisdictions covered by this knowledge base
+
+jurisdictions:
+  - code: US-FED
+    name: United States (Federal)
+    authority: Internal Revenue Service (IRS)
+    primary_statute: Internal Revenue Code (Title 26 U.S.C.)
+    tax_years_covered: [2025]
+    last_updated: 2026-04-17

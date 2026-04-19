@@ -1,0 +1,14 @@
+# International legal instruments covered by this knowledge base.
+# Populate as sources are added to raw/.
+
+instruments: []
+  # Example entry:
+  # - code: VCLT-1969
+  #   name: Vienna Convention on the Law of Treaties
+  #   adopted: 1969-05-23
+  #   entry_into_force: 1980-01-27
+  #   depositary: UN Secretary-General
+  #   regime: public-international-law
+  #   sources:
+  #     - raw/vclt-1969-text.md
+  #   wiki: wiki/vclt-1969.md

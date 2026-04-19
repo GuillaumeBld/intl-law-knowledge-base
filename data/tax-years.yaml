@@ -1,0 +1,8 @@
+# Tax years covered per jurisdiction
+
+coverage:
+  - jurisdiction: US-FED
+    tax_year: 2025
+    sources:
+      - raw/irs-ir-2024-273-tax-year-2025-inflation-adjustments.md
+    completeness: partial  # only items in IR-2024-273; full Rev. Proc. 2024-40 not yet ingested
